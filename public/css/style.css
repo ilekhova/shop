@@ -1,0 +1,24 @@
+/* line 3, ../sass/style.scss */
+body {
+  background: url(http://subtlepatterns.com/patterns/crossword.png);
+}
+
+/* line 5, ../sass/style.scss */
+.navbar {
+  border-radius: 0;
+}
+
+/* line 6, ../sass/style.scss */
+.navbar-mad {
+  background: #fff;
+  color: #40c5b9;
+}
+/* line 6, ../sass/style.scss */
+.navbar-mad a {
+  color: #40c5b9;
+}
+
+/* line 7, ../sass/style.scss */
+.nav > li > a:hover {
+  background: rgba(200, 200, 200, 0.1);
+}
