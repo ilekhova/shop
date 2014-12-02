@@ -5,10 +5,9 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class Order extends Eloquent implements UserInterface, RemindableInterface {
+class Order {
 
-	use UserTrait, RemindableTrait;
-
+	//
 	/**
 	 * The database table used by the model.
 	 *
@@ -21,7 +20,5 @@ class Order extends Eloquent implements UserInterface, RemindableInterface {
 	 *
 	 * @var array
 	 */
-	protected $hidden = array('password');
-	protected $fillable = array('login', 'mail');
-	protected $guarded = array('user_id', 'password');
+
 }

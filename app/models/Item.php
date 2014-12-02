@@ -7,7 +7,7 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 
 class Item {
 
-	use UserTrait, RemindableTrait;
+	//use UserTrait, RemindableTrait;
 
 	/**
 	 * The database table used by the model.

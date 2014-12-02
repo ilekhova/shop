@@ -5,9 +5,9 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class Sprinkling extends Eloquent implements UserInterface, RemindableInterface {
+class Sprinkling  {
 
-	use UserTrait, RemindableTrait;
+	//use UserTrait, RemindableTrait;
 
 	/**
 	 * The database table used by the model.
@@ -16,12 +16,5 @@ class Sprinkling extends Eloquent implements UserInterface, RemindableInterface 
 	 */
 	protected $table = 'sprinkling;
 
-	/**
-	 * The attributes excluded from the model's JSON form.
-	 *
-	 * @var array
-	 */
-	protected $hidden = array('password');
-	protected $fillable = array('login', 'mail');
-	protected $guarded = array('user_id', 'password');
+	
 }

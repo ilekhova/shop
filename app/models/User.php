@@ -5,7 +5,7 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class User extends Eloquent implements UserInterface, RemindableInterface {
+class User  {
 
 	use UserTrait, RemindableTrait;
 
@@ -14,14 +14,14 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 *
 	 * @var string
 	 */
-	protected $table = 'user';
+	public  $table = 'users';
 
 	/**
 	 * The attributes excluded from the model's JSON form.
 	 *
 	 * @var array
 	 */
-	protected $hidden = array('password');
+	/*protected $hidden = array('password');
 	protected $fillable = array('login', 'mail');
 	protected $guarded = array('user_id', 'password');
 
@@ -31,7 +31,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
  *
  * @return mixed
  */
-public function getAuthIdentifier()
+/*public function getAuthIdentifier()
 {
   return $this->getKey();
 }
@@ -41,7 +41,7 @@ public function getAuthIdentifier()
  *
  * @return string
  */
-public function getAuthPassword()
+/*public function getAuthPassword()
 {
   return $this->password;
 }
@@ -51,9 +51,22 @@ public function getAuthPassword()
  *
  * @return string
  */
-public function getReminderEmail()
+/*public function getReminderEmail()
 {
   return $this->mail;
+}
+*/
+
+
+	public static function all()
+	{
+		return DB::select(DB::raw('SELECT * FROM users'));
+	}
+
+	public static function qwerty()
+	{
+		
+	return DB::select(DB::raw('SELECT * FROM users where user_id = 1'));	
 }
 
 }
