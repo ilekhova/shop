@@ -1,10 +1,9 @@
 <?php
 
-class LoginController extends BaseController {
+class SignController extends BaseController {
 
- 
 
-public function doLogin()
+	public function doSign()
 	{
 		
 
@@ -19,19 +18,34 @@ public function doLogin()
 
 		// if the validator fails, redirect back to the form
 		if ($validator->fails()) {
-			return Redirect::to('login')
+			return Redirect::to('signin')
 				->withErrors($validator) // send back all errors to the login form
 				->withInput(Input::except('password')); // send back the input (not the password) so that we can repopulate the form
 		} else {
 
 			// create our user data for the authentication
 			$userdata = array(
+
+				'username' 	=> Input::get('username'),
 				'email' 	=> Input::get('email'),
-				'password' 	=> Input::get('password')
+				'password' 	=> Input::get('password'),
+				'firstname'	=> Input::get('firstname'),
+				'address' 	=> Input::get('address')
+
 			);
 
+			$userdata['password'] = Hash::make('secret');
+
+			DB::table('users')->insert(
+			  array('username' => $userdata['username'], 'email' => $userdata['email'],
+  					'password' => $userdata['password'], 'first_name' => $userdata['firstname'],
+  					'address' => $userdata['address']
+                )
+				);
+
+
 			// attempt to do the login
-			if (Auth::attempt($userdata)) {
+		/*	if (Auth::attempt($userdata)) {
 
 				// validation successful!
 				// redirect them to the secure section or whatever
@@ -39,22 +53,25 @@ public function doLogin()
 				// for now we'll just echo success (even though echoing in a controller is bad)
 				return var_dump('uraaaa');
 
-			} /*else {	 	
+			} else {	 	
 
 				// validation not successful, send back to form	
 				return Redirect::to('login');
 
-			}*/
+			}
 
-		}
+		}*/
 }
+}
+				
 
-	public function showLogin()
+	public function showSignin()
 	{
 		// show the form
 		
-		return View::make('login'); //->with('user', $usser);
+		return View::make('sign');
 	}
+
 
 
 }

@@ -1,12 +1,10 @@
-<?php
 
+<?php
 use Illuminate\Auth\UserTrait;
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
-
-class User  {
-
+class User extends Eloquent implements UserInterface, RemindableInterface {
 	use UserTrait, RemindableTrait;
 
 	/**
@@ -14,59 +12,53 @@ class User  {
 	 *
 	 * @var string
 	 */
-	public  $table = 'users';
+	protected $table = 'users';
+	protected $fillable = ['username', 'email', 'password','first_name', 'address'];
 
 	/**
 	 * The attributes excluded from the model's JSON form.
 	 *
 	 * @var array
 	 */
-	/*protected $hidden = array('password');
-	protected $fillable = array('login', 'mail');
-	protected $guarded = array('user_id', 'password');
+
+	protected $primaryKey = 'user_id';	
+
+	protected $hidden = array('password');
 
 
-/**
- * Получить уникальный идентификатор пользователя.
- *
- * @return mixed
- */
-/*public function getAuthIdentifier()
-{
-  return $this->getKey();
-}
+	
+	public function getAuthIdentifier() {
 
-/**
- * Получить пароль пользователя.
- *
- * @return string
- */
-/*public function getAuthPassword()
-{
-  return $this->password;
-}
+		return $this->getKey();
 
-/**
- * Получить адрес e-mail для отправки напоминания о пароле.
- *
- * @return string
- */
-/*public function getReminderEmail()
-{
-  return $this->mail;
-}
-*/
-
-
-	public static function all()
-	{
-		return DB::select(DB::raw('SELECT * FROM users'));
 	}
 
-	public static function qwerty()
-	{
+	public function getAuthPassword() {
+
+		return $this->password;
+
+	}
+
+	public function getReminderEmail() {
+	
+		return $this->email;
+	
+	}
+	
+	public function getRememberToken() {
 		
-	return DB::select(DB::raw('SELECT * FROM users where user_id = 1'));	
-}
+		return $this->remember_token;
+	}
+
+	public function setRememberToken($value) {
+		
+		$this->remember_token = $value;
+	}
+
+	public function getRememberTokenName() {
+		
+		return 'remember_token';
+
+	}
 
 }

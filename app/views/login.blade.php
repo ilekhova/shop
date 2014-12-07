@@ -10,13 +10,13 @@
 
 		<!-- if there are login errors, show them here -->
 		<p>
-			{{ $errors->first('mail') }}
+			{{ $errors->first('email') }}
 			{{ $errors->first('password') }}
 		</p>
 
 		<p>
-			{{ Form::label('mail', 'Email Address') }}
-			{{ Form::text('email', Input::old('mail'), array('placeholder' => 'awesome@awesome.com')) }}
+			{{ Form::label('email', 'Email Address') }}
+			{{ Form::text('email', Input::old('email'), array('placeholder' => 'awesome@awesome.com')) }}
 		</p>
 
 		<p>
