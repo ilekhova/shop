@@ -15,4 +15,5 @@ Route::get('login', array('uses' => 'LoginController@showLogin'));
 Route::post('login', array('uses' => 'LoginController@doLogin'));
 Route::get('sign', array('uses' => 'SignController@showSignin'));
 Route::post('sign', array('uses' => 'SignController@doSign'));
+Route::get('cart', array('uses' => 'CartController@showCart'));
 //Route::get('logout', array('uses' => 'LoginController@doLogout'));
