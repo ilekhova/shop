@@ -34,8 +34,8 @@
 
 		
 		<p>
-			{{ Form::label('firstname', 'Your Name') }}
-			{{ Form::text('firstname')}}
+			{{ Form::label('first_name', 'Your Name') }}
+			{{ Form::text('first_name')}}
 		</p>
 
 

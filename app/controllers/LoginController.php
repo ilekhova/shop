@@ -7,7 +7,7 @@ class LoginController extends BaseController {
 public function doLogin()
 	{
 		
-
+		Auth::logout();
 		 	// validate the info, create rules for the inputs
 		$rules = array(
 			'email'    => 'required|email', // make sure the email is an actual email
@@ -37,14 +37,25 @@ public function doLogin()
 				// redirect them to the secure section or whatever
 				// return Redirect::to('secure');
 				// for now we'll just echo success (even though echoing in a controller is bad)
+			$id= Auth::user()->id;
+			$exists = DB::select(DB::raw('SELECT * FROM orders WHERE status = 0
+				AND user_id='.$id.''));
+    		if(!$exists)	
+				{
+				DB::table('orders')->insert(
+			 	 array('status' => 0, 
+  				'user_id'=> $id, 
+  				'created' => DB::raw('NOW()')
+                )
+				);	
+			}
 				return var_dump('uraaaa');
-
-			} /*else {	 	
+			} else {	 	
 
 				// validation not successful, send back to form	
 				return Redirect::to('login');
 
-			}*/
+			}
 
 		}
 }

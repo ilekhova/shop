@@ -20,9 +20,29 @@ class CartController extends BaseController {
 									order_item.order_id = orders.id 
 									AND  orders.user_id = '.$id.'')); 
 
+		//$total_price = 
+		return View::make('cart')->with('item', $order/*, $total_price*/);
+	}
+
+
+	public function DeleteItem($order_item) //удаляем предмет из корзины
+	{
+		//получить id предмета можно как: 
+
+		//не тестила
+		DB::delete('delete from order_item where id='.$order_item.'');
 		return View::make('cart')->with('item', $order);
 	}
 
+	public function RefreshCart() 
+	{
+		 //не затестировала
+		$id= Auth::user()->id;
+		DB::delete('delete order_item from order_item, orders where orders.status = 0 AND
+									order_item.order_id = orders.id 
+									AND  orders.user_id = '.$id.'');
+		return View::make('cart')->with('item', $order);
+	}
 
 
 }
