@@ -13,7 +13,7 @@ class CartController extends BaseController {
 	public function showCart()
 	{
 			
-		$id= Auth::user()->id; //вытягиваем id user'a из сессии
+		$id= Auth::user()->id;
 		$order= DB::select(DB::raw('SELECT item.* FROM order_item, orders, item
 									WHERE order_item.item_id = item.id AND 
 									orders.status = 0 AND

@@ -17,13 +17,13 @@ class AllGoods extends BaseController {
           		
 
               $order_id = DB::select(DB::raw('SELECT id FROM orders WHERE status = 0
-               AND user_id='.$id.''));
+               AND user_id=.$id.'));
               //проверяем условие того, есть ли этот товар в корзине
               $exists = DB::select(DB::raw("SELECT order_item.* FROM order_item, orders, item
-                      WHERE order_item.item_id =".$good_id. AND 
+                      WHERE order_item.item_id =.$good_id. AND 
                       orders.status = 0 AND
                       order_item.order_id = orders.id 
-                      AND  orders.user_id =.$id.""));
+                      AND  orders.user_id =.$id."));
               if($exists)
               {
                   //update не тестировала
