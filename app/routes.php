@@ -26,11 +26,7 @@ Route::post('sign', array('uses' => 'SignController@doSign'));
     })->before('auth.basic');
 
 Route::resource('items', 'ItemsController');
-  /*
-Route::any("/logout", [
-  
-  "uses" => "UserController@logout"
-])->before('auth.basic');*/
+Route::get('additions', 'AllGoods@showAddition');
 
 Route::get('/', function() { return View::make('home'); });
 Route::get('/landing', function() { return View::make('landing'); });

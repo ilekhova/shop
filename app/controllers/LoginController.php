@@ -30,7 +30,7 @@ public function doLogin()
 			// attempt to do the login
 			if (Auth::once(array('email' => $email, 'password' => $password))) {
 
-				$id= Auth::user()->id;
+				/*$id= Auth::user()->id;
 				$exists = DB::select(DB::raw('SELECT * FROM orders WHERE status = 0
 					AND user_id='.$id.''));
 	    		if(!$exists)	
@@ -41,7 +41,7 @@ public function doLogin()
 	  				'created' => DB::raw('NOW()')
 	                )
 					);	
-				}
+				}*/
 					return var_dump('uraaaa');
 				} else {	 	
 
