@@ -22,4 +22,8 @@ class Cream  {
 	 * @var array
 	 */
 	
+	public static function ShowAll()
+	{
+		return DB::select(DB::raw('SELECT * FROM cream'));
+	}
 }

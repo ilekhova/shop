@@ -9,7 +9,7 @@ class ItemsController extends \BaseController {
 	 */
 	public function index()
 	{
-		return Item::all();
+		return Item::ShowAll();
 	}
 
 
