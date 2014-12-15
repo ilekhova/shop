@@ -14,7 +14,11 @@ class Sprinkling  {
 	 *
 	 * @var string
 	 */
-	protected $table = 'sprinkling;
+	protected $table = 'sprinkling';
 
-	
+	public static function ShowAll()
+	{
+		return DB::select(DB::raw('SELECT * FROM sprinkling'));
+	}
+
 }

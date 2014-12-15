@@ -21,7 +21,8 @@ class CartController extends BaseController {
 									AND  orders.user_id = '.$id.'')); 
 
 		//$total_price = 
-		return View::make('cart')->with('item', $order/*, $total_price*/);
+		//return View::make('cart')->with('item', $order/*, $total_price*/);
+		return $order;
 	}
 
 

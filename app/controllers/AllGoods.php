@@ -6,7 +6,7 @@ class AllGoods extends BaseController {
 
       	public function showGood()
           {
-              $good = Item::all();
+              $good = Item::ShowaAll();
       		    return View::make('goods.goods')->with('item', $good);
             
             }
@@ -28,17 +28,17 @@ class AllGoods extends BaseController {
               {
                   //update не тестировала
                    
-                    DB::table('users')
-                    ->where('order_id', '=' , $order_id)
-                    ->where('item_id','=', $good_id)
-                    ->increment('quantity',$quantity);
+                  DB::table('users')
+                ->where('order_id', '=' , $order_id)
+                ->where('item_id','=', $good_id)
+                ->increment('quantity',$quantity);
               }
               else{
 
                     //insert
                     DB::insert('insert into order_item (item_id, order_id,quantity) 
                       values (?, ?, ?)',  array($good_id,$order_item,$quantity));
-          	           //не получилось затестить
+          	         //не получилось затестить
                   }
     	       }
 

@@ -5,7 +5,7 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class Item {
+class Cream {
 
 	//use UserTrait, RemindableTrait;
 
@@ -16,9 +16,17 @@ class Item {
 	 */
 	protected $table = 'item';
 
-	public static function all()
+	public static function ShowAll()
 	{
 		return DB::select(DB::raw('SELECT * FROM item'));
 	}
+
+	public static function ShowAll()
+	{
+		return DB::select(DB::raw('SELECT * FROM cream'));
+	}
+
+
+
 	
 }
