@@ -8,6 +8,23 @@
 </head>
 <body ng-controller="MainCtrl">
 		
+	<div class="navbar navbar-default" role="navigation">
+		<div class="container">
+
+			<div class="navbar-header">
+				<a class="navbar-brand" href="/landing">Ирка Апп</a>
+			</div>
+
+			<div class="nav navbar-nav navbar-right">
+				<li><a href="/landing">Главная</a></li>
+				<li ng-class="{ active: isActive('goods') }"><a href="#/goods">Товары</a></li>
+				<li  ng-class="{ active: isActive('cart') }"><a href="#/cart">Корзина</a></li>
+			</div>
+
+		</div>
+	</div>
+
+
 	<div ng-view></div>
 
 	<!-- JavaScript -->
@@ -21,5 +38,6 @@
 	<script src="js/app.js"></script>
 	<script src="js/controllers.js"></script>
 	<script src="js/factories.js"></script>
+	<script src="js/filters.js"></script>
 </body>
 </html>

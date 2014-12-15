@@ -21,7 +21,7 @@ class Syrup {
 	 *
 	 * @var array
 	 */
-	public static function ShowAll()
+	public static function getAll()
 	{
 		return DB::select(DB::raw('SELECT * FROM syrup'));
 	}

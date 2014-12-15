@@ -16,7 +16,7 @@ class Sprinkling  {
 	 */
 	protected $table = 'sprinkling';
 
-	public static function ShowAll()
+	public static function getAll()
 	{
 		return DB::select(DB::raw('SELECT * FROM sprinkling'));
 	}

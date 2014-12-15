@@ -13,6 +13,7 @@
 /*Route::get('/', 'AllGoods@showGood');
 */
 Route::get('cart', array('uses' => 'CartController@showCart'));
+Route::post('cart', 'CartController@addtoCart');
 Route::get('login', array('uses' => 'LoginController@showLogin'));//->before('auth.basic');
 Route::post('login', array('uses' => 'LoginController@doLogin'));
 Route::get('sign', array('uses' => 'SignController@showSignin'));

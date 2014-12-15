@@ -1,19 +1,3 @@
-<div class="navbar navbar-default" role="navigation">
-	<div class="container">
-
-		<div class="navbar-header">
-			<a class="navbar-brand" href="/landing">Ирка Апп</a>
-		</div>
-
-		<div class="nav navbar-nav navbar-right">
-			<li><a href="/landing">Главная</a></li>
-			<li ng-class="{ active: isActive('goods') }"><a href="#/goods">Товары</a></li>
-			<li  ng-class="{ active: isActive('shop') }"><a href="#/shop">Корзина</a></li>
-		</div>
-
-	</div>
-</div>
-
 <div class="container">
 	<div class="page-header">
 		<h2 class="text-center">Каталог товаров</h2>
@@ -25,11 +9,24 @@
 			<div class="thumbnail">
 				<img ng-src="../img/items/{{ good.filename || 'noimg.gif' }}" class="img-responsive" alt="">
 				<div class="caption">
-					<a ng-href="#/goods/{{ good.id }}"><h5>{{ good.name }}</h5></a>
-					<button class="btn btn-primary">Добавить в корзину</button>
+					<p><a ng-href="#/goods/{{ good.id }}"><h5>{{ good.name }}</h5></a></p>
+					<div ng-repeat="addition in additions">
+						<div ng-repeat="(key, details) in addition" class="row form-group">
+							<label class="col-sm-4 control-label lh30">{{ key | toRussian }}</label>
+							<div class="col-sm-8">
+								<select class="form-control" ng-model="selects[good.id][key]">
+									<!-- <option value="0"></option> -->
+									<option ng-repeat="detail in details" value="{{detail.id}}">{{detail.name}}</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<button class="btn btn-primary" ng-click="addToCart(good.id, selects[good.id])">Добавить в корзину</button>
 				</div>
 			</div>
 		</div>
 
 	</div>
+
+	{{ selects }}
 </div>
