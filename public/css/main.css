@@ -3,8 +3,88 @@
 body {
 	font-family: Roboto;
 	font-weight: 300;
+	padding-top: 30px;
 }
 
 .navbar { border-radius: 0 !important; }
-
 .lh30 { line-height: 30px; }
+
+.col-sm-4:nth-child(3n+1) { clear: both; }
+.fa-rub { font-size: .6em; margin-left: -3px; }
+.no-rub-margin .fa-rub { margin-left: 0; }
+.text-color { color: #d9230f; }
+.pos-rel { position: relative; }
+
+
+.madmed-thumbnail { position: relative; }
+.madmed-float-quantity {
+	position: absolute;
+	top: -15px;
+	right: -15px;
+	width: 30px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+
+	background: #d9230f;
+	color: #fff;
+	border-radius: 50%;
+	border: 1px solid #fff;
+}
+
+.madmed-left-float-quantity {
+	position: absolute;
+	top: -12px;
+	left: -12px;
+	width: 25px;
+	height: 25px;
+	line-height: 25px;
+	text-align: center;
+	cursor: pointer;
+
+	background: #d9230f;
+	color: #fff;
+	border-radius: 50%;
+	border: 1px solid #fff;
+}
+
+.madmed-little-float-quantity {
+	position: absolute;
+	top: -3px;
+	right: -7px;
+	width: 25px;
+	height: 25px;
+	line-height: 25px;
+	text-align: center;
+
+	background: #d9230f;
+	color: #fff;
+	border-radius: 50%;
+	border: 1px solid #fff;
+}
+
+
+/*==========================================
+============== Slide Animation =============
+==========================================*/
+	.slide-animation.ng-enter,
+	.slide-animation.ng-leave { transition: all .6s; }
+
+	.slide-animation.ng-enter { opacity: 0; transform: translateX(-300px); transition-delay: .6s; }
+	.slide-animation.ng-enter.ng-enter-active { opacity: 1; transform: translateX(0); }
+
+	.slide-animation.ng-leave { opacity: 1; transform: translateX(0); }
+	.slide-animation.ng-leave.ng-leave-active { opacity: 0; transform: translateX(300px); }
+
+
+/*==========================================
+============ Animate on ngRepeat ===========
+==========================================*/
+	.slide-top-animation.ng-enter,
+	.slide-top-animation.ng-leave { transition: all .6s; }
+
+	.slide-top-animation.ng-enter { opacity: 0; transform: translateY(100px); transition-delay: .6s; }
+	.slide-top-animation.ng-enter.ng-enter-active { opacity: 1; transform: translateY(0); }
+
+	.slide-top-animation.ng-leave { opacity: 1; transform: translateY(0); }
+	.slide-top-animation.ng-leave.ng-leave-active { opacity: 0; transform: translateY(100px); }

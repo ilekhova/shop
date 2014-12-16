@@ -6,10 +6,56 @@
 	<div class="row">
 		
 		<div class="col-sm-4 col-xs-6" ng-repeat="good in cartGoods">
-			<div class="thumbnail">
-				<img ng-src="../img/items/{{ good.filename || 'noimg.gif' }}" class="img-responsive" alt="">
+			<div class="thumbnail madmed-thumbnail">
+				<span class="madmed-float-quantity">{{ good.quantity }}</span>
+				<span class="madmed-left-float-quantity" ng-click="deleteItem(good.order_item)">&times;</span>
+				<img ng-src="../img/{{ good.img || 'noimg.gif' }}" class="img-responsive" alt="">
 				<div class="caption">
 					<a ng-href="#/goods/{{ good.id }}"><h5>{{ good.name }}</h5></a>
+
+					<hr>
+
+					<!-- Голая цена товара -->
+					<div class="row">
+						<div class="col-xs-4">Цена:</div>
+						<div class="col-xs-8 text-right">
+							<span class="text-color">
+								{{ good.price }}
+								<i class="fa fa-rub"></i>
+							</span>
+						</div>
+					</div>
+
+					<hr>
+
+					<!-- Дополнение к товару -->
+					<div class="row">
+						<div ng-repeat="(name, addition) in good.additions" ng-show="addition">
+							<div class="col-xs-3">
+								{{ name | toRussian }}
+							</div>
+							<div class="col-xs-5 col-xs-offset-1">
+								{{ addition[0].name }}
+							</div>
+							<div class="col-xs-3 text-right no-rub-margin">
+								<span class="text-color">
+									{{ addition[0].price }}<i class="fa fa-rub"></i>
+								</span>
+							</div>
+							<div class="clearfix"></div>
+							<hr>
+					</div>
+
+					<!-- Итого по заказу -->
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="col-xs-4"><span class="text-color">Итого:</span></div>
+							<div class="col-xs-8 text-right">
+								<span class="text-color">{{ good.total_price }}
+								<i class="fa fa-rub"></i></span>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

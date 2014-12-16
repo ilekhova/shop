@@ -59,7 +59,7 @@
 			</div>
 		</div>
 
-		<div class="row form-group">{{ Form::submit('Зарегестрироваться', ['class' => 'btn btn-success col-sm-offset-4']) }}</div>
+		<div class="row form-group">{{ Form::submit('Зарегистрироваться', ['class' => 'btn btn-success col-sm-offset-4']) }}</div>
 	{{ Form::close() }}
 
 </div>

@@ -1,5 +1,5 @@
 (function() {
-  angular.module('IrkaApp', ['ngRoute', 'ngResource']).config(function($routeProvider, $locationProvider) {
+  angular.module('IrkaApp', ['ngRoute', 'ngResource', 'ngAnimate']).config(function($routeProvider, $locationProvider) {
     return $routeProvider.when('/', {
       templateUrl: '../templates/main.html'
     }).when('/goods', {

@@ -1,4 +1,4 @@
-angular.module 'IrkaApp', ['ngRoute', 'ngResource']
+angular.module 'IrkaApp', ['ngRoute', 'ngResource', 'ngAnimate']
 	.config ($routeProvider, $locationProvider) ->
 		$routeProvider
 			.when '/',

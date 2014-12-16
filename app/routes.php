@@ -10,25 +10,26 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
-/*Route::get('/', 'AllGoods@showGood');
-*/
-Route::get('cart', array('uses' => 'CartController@showCart'));
-Route::post('cart', 'CartController@addtoCart');
-Route::get('login', array('uses' => 'LoginController@showLogin'));//->before('auth.basic');
-Route::post('login', array('uses' => 'LoginController@doLogin'));
-Route::get('sign', array('uses' => 'SignController@showSignin'));
-Route::post('sign', array('uses' => 'SignController@doSign'));
-  Route::get('/logout', function()
-    {
-     
-   	Auth::logout();
-    Session::flush();
-        return Redirect::to('/');
-    })->before('auth.basic');
 
-Route::resource('items', 'ItemsController');
+// Получение всех товаров и товаров из корзины
+Route::get('items', 'AllGoods@showGood');
+
+// Работа с корзиной
+Route::get('cart', 'CartController@showCart');
+Route::post('cart', 'CartController@addtoCart');
+Route::delete('cart', 'CartController@DeleteItem');
+
+// Получие всех Addition
 Route::get('additions', 'AllGoods@showAddition');
 
+// Авторизация Пользователя
+Route::get('login', 'LoginController@showLogin');
+Route::post('login', 'LoginController@doLogin');
+
+// Регистрация Пользователя
+Route::get('sign', 'SignController@showSignin');
+Route::post('sign', 'SignController@doSign');
+
+// Главный route и вывод landing page
 Route::get('/', function() { return View::make('home'); });
 Route::get('/landing', function() { return View::make('landing'); });
-

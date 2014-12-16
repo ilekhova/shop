@@ -1,7 +1,5 @@
 <?php
-
 return array(
-
 	/*
 	|--------------------------------------------------------------------------
 	| Default Cache Driver
@@ -14,9 +12,7 @@ return array(
 	| Supported: "file", "database", "apc", "memcached", "redis", "array"
 	|
 	*/
-
 	'driver' => 'file',
-
 	/*
 	|--------------------------------------------------------------------------
 	| File Cache Location
@@ -27,9 +23,7 @@ return array(
 	| are free to change it to any other place on disk that you desire.
 	|
 	*/
-
 	'path' => storage_path().'/cache',
-
 	/*
 	|--------------------------------------------------------------------------
 	| Database Cache Connection
@@ -40,9 +34,7 @@ return array(
 	| null the default database connection will be utilized for cache.
 	|
 	*/
-
 	'connection' => null,
-
 	/*
 	|--------------------------------------------------------------------------
 	| Database Cache Table
@@ -53,9 +45,7 @@ return array(
 	| been provided but you're free to change it however you deem fit.
 	|
 	*/
-
 	'table' => 'cache',
-
 	/*
 	|--------------------------------------------------------------------------
 	| Memcached Servers
@@ -66,13 +56,9 @@ return array(
 	| should contain a value for "host", "port", and "weight" options.
 	|
 	*/
-
 	'memcached' => array(
-
 		array('host' => '127.0.0.1', 'port' => 11211, 'weight' => 100),
-
 	),
-
 	/*
 	|--------------------------------------------------------------------------
 	| Cache Key Prefix
@@ -83,7 +69,5 @@ return array(
 	| value to get prefixed to all our keys so we can avoid collisions.
 	|
 	*/
-
 	'prefix' => 'laravel',
-
 );

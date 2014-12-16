@@ -6,7 +6,7 @@ class AllGoods extends BaseController {
 
       	public function showGood()
         {
-          $goods = Item::ShowaAll();
+          $goods = Item::ShowAll();
   		    return $goods;
             
         }

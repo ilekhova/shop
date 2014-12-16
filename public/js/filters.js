@@ -8,7 +8,16 @@
         input = 'Крема';
       }
       if (input === 'sprinkling_id') {
-        return input = 'Посыпки';
+        input = 'Посыпки';
+      }
+      if (input === 'syrup') {
+        input = 'Сироп';
+      }
+      if (input === 'sprinkling') {
+        input = 'Посыпка';
+      }
+      if (input === 'cream') {
+        return input = 'Крем';
       } else {
         return input = input;
       }
