@@ -20,7 +20,7 @@ class CartController extends BaseController {
 									"AND  orders.user_id = $id"));
 
 		
-		$array = array('foo' => 'bar');
+		$array = array();
 		foreach ($order_items as $order_item) {
 			
 			
@@ -36,7 +36,7 @@ class CartController extends BaseController {
 			$additions->sprinkling = DB::select(DB::raw("SELECT sprinkling.* FROM sprinkling, addition ".
 			" WHERE addition.id = $order_item->addition_id AND addition.sprinkling_id = sprinkling.id LIMIT 1"));
 
-
+			$arr->order_item = $order_item->id;
 			$arr->quantity = $order_item->quantity;
 			$arr->additions = $additions; 
 			/*$arr->cream = DB::select(DB::raw("SELECT cream.* FROM cream, addition, order_item".
@@ -46,7 +46,7 @@ class CartController extends BaseController {
 			$arr->sprinkling = DB::select(DB::raw("SELECT sprinkling.* FROM sprinkling, addition, order_item".
 			" WHERE addition.id = $order_item->addition_id AND addition.sprinkling_id = sprinkling.id LIMIT 1"));
 			*/
-			$array = array_add($array, $order_item->id, $arr);
+			array_push($array, $arr);
 
 
 		}
@@ -158,7 +158,7 @@ class CartController extends BaseController {
 			"AND orders.user_id = $user_id " .
 			"AND order_item.addition_id = $add"));
 
-	
+
 		if ($exists) {
 			
 			DB::table('order_item')
