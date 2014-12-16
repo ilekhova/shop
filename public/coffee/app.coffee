@@ -1,8 +1,6 @@
 angular.module 'IrkaApp', ['ngRoute', 'ngResource', 'ngAnimate']
 	.config ($routeProvider, $locationProvider) ->
 		$routeProvider
-			.when '/',
-				templateUrl: '../templates/main.html'
 
 			.when '/goods',
 				controller: 'GoodCtrl'
@@ -16,7 +14,11 @@ angular.module 'IrkaApp', ['ngRoute', 'ngResource', 'ngAnimate']
 				controller: 'CartCtrl'
 				templateUrl: '../templates/cart.html'
 
+			.when '/orders/:id?',
+				controller: 'OrderCtrl'
+				templateUrl: '../templates/orders.html'
+
 			.otherwise
-				redirectTo: '/'
+				redirectTo: '/goods'
 
 		# $locationProvider.html5Mode true

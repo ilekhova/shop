@@ -13,11 +13,12 @@
 
 	<div class="row">
 		
-		<div class="col-sm-4 col-xs-6 slide-top-animation" ng-repeat="good in goods | filter: search">
-			<div class="thumbnail">
-				<img ng-src="../img/{{ good.img || 'noimg.gif' }}" class="img-responsive" alt="">
+		<div class="col-sm-4 col-xs-12 slide-top-animation" ng-repeat="good in goods | filter: search">
+			<div class="thumbnail madmed-thumbnail">
+				<span class="madmed-float-price">Цена: {{ good.price }} <i class="fa fa-rub"></i></span>
+				<img ng-src="../img/items/{{ good.filename || 'noimg.gif' }}" class="img-responsive" alt="">
 				<div class="caption">
-					<p><a ng-href="#/goods/{{ good.id }}"><h5>{{ good.name }}</h5></a></p>
+					<p><h5>{{ good.name }}</h5></p>
 					<div ng-repeat="addition in additions">
 						<div ng-repeat="(key, details) in addition" class="row form-group">
 							<label class="col-sm-4 control-label lh30">{{ key | toRussian }}</label>

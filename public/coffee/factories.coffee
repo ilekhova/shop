@@ -7,3 +7,13 @@ angular.module 'IrkaApp'
 
 	.factory 'Additions', ($resource) ->
 		$resource '/additions'
+
+	.factory 'Orders', ($resource) ->
+		$resource '/orders/:order_id', order_id: '@id'
+
+	.factory 'SingleOrder', ($resource) ->
+
+		get: (order_id) ->
+			$resource "/orders/#{order_id}"
+
+		# $resource '/orderSingle'

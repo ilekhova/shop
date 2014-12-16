@@ -22,6 +22,7 @@ public function doLogin()
 			$email  = Input::get('email');
             $password  = Input::get('password') ;
 			// attempt to do the login
+			
 			if (Auth::attempt(array('email' => $email, 'password' => $password))) {
 				$id= Auth::user()->id;
 				$exists = DB::select(DB::raw('SELECT * FROM orders WHERE status = 0 AND user_id='.$id.''));
@@ -34,7 +35,7 @@ public function doLogin()
 	                )
 					);	
 				}
-					return var_dump('uraaaa');
+					return Redirect::to('landing');
 				} else {	 	
 					// validation not successful, send back to form	
 					return Redirect::to('login');

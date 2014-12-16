@@ -1,8 +1,6 @@
 (function() {
   angular.module('IrkaApp', ['ngRoute', 'ngResource', 'ngAnimate']).config(function($routeProvider, $locationProvider) {
-    return $routeProvider.when('/', {
-      templateUrl: '../templates/main.html'
-    }).when('/goods', {
+    return $routeProvider.when('/goods', {
       controller: 'GoodCtrl',
       templateUrl: '../templates/goods.html'
     }).when('/goods/:id', {
@@ -11,8 +9,11 @@
     }).when('/cart', {
       controller: 'CartCtrl',
       templateUrl: '../templates/cart.html'
+    }).when('/orders/:id?', {
+      controller: 'OrderCtrl',
+      templateUrl: '../templates/orders.html'
     }).otherwise({
-      redirectTo: '/'
+      redirectTo: '/goods'
     });
   });
 
