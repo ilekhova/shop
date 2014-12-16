@@ -36,21 +36,33 @@ class CartController extends BaseController {
 			$additions->sprinkling = DB::select(DB::raw("SELECT sprinkling.* FROM sprinkling, addition ".
 			" WHERE addition.id = $order_item->addition_id AND addition.sprinkling_id = sprinkling.id LIMIT 1"));
 
+			
 			$arr->order_item = $order_item->id;
 			$arr->quantity = $order_item->quantity;
 			$arr->additions = $additions; 
-			/*$arr->cream = DB::select(DB::raw("SELECT cream.* FROM cream, addition, order_item".
-			" WHERE addition.id = $order_item->addition_id AND addition.cream_id = cream.id LIMIT 1"));
-			$arr->syrup = DB::select(DB::raw("SELECT syrup.* FROM syrup, addition, order_item".
-			" WHERE addition.id = $order_item->addition_id AND addition.syrup_id = syrup.id LIMIT 1"));
-			$arr->sprinkling = DB::select(DB::raw("SELECT sprinkling.* FROM sprinkling, addition, order_item".
-			" WHERE addition.id = $order_item->addition_id AND addition.sprinkling_id = sprinkling.id LIMIT 1"));
-			*/
+			$arr->total_price = $arr->price;
+
+			if (!empty($additions->cream)) {
+				
+				$arr->total_price += $additions->cream[0]->price;
+			}	
+
+			if (!empty($additions->syrup)) {
+				
+				$arr->total_price += $additions->syrup[0]->price;
+			}	
+
+			if (!empty($additions->sprinkling)) {
+				
+				$arr->total_price += $additions->sprinkling[0]->price;
+			}	
+			
+			
 			array_push($array, $arr);
 
 
 		}
-		//$total_price	 = 
+		
 		return $array;
 	}
 
@@ -124,7 +136,7 @@ class CartController extends BaseController {
 			" AND syrup_id IS NULL AND sprinkling_id IS NULL";
 		}
 
-		//return var_dump($query);
+		
 
 		$user_id= Auth::user()->id;//вытягиваем айдишник юзера из сессии
 		
@@ -132,7 +144,7 @@ class CartController extends BaseController {
 		$order_id = $order_id[0]->id;
 		$addition = DB::select(DB::raw($query));
 
-		//return var_dump($addition);
+		
 
 		if (!$addition)
 		{
@@ -147,7 +159,7 @@ class CartController extends BaseController {
 			$add = $addition[0]->id;
 		}
 
-		 //return var_dump($add);
+		
 		
 		
 		//проверяем условие того, есть ли этот товар в корзине
