@@ -12,6 +12,10 @@ angular.module 'IrkaApp', ['ngRoute', 'ngResource']
 				controller: 'ItemCtrl'
 				templateUrl: '../templates/item.html'
 
+			.when '/cart',
+				controller: 'CartCtrl'
+				templateUrl: '../templates/cart.html'
+
 			.otherwise
 				redirectTo: '/'
 

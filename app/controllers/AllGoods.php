@@ -13,9 +13,9 @@ class AllGoods extends BaseController {
 
         public function showAddition()
         {
-          $syrup_array=Syrup::ShowAll();
-          $cream_array=Cream::ShowAll();
-          $sprinkling_array=Sprinkling::ShowAll();
+          $syrup_array=Syrup::getAll();
+          $cream_array=Cream::getAll();
+          $sprinkling_array=Sprinkling::getAll();
           
           return array(
             array('syrup_id'=> $syrup_array),

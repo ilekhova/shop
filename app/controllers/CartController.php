@@ -14,11 +14,10 @@ class CartController extends BaseController {
 
 		$id = Auth::user()->id;
 
-		$order_items= DB::select(DB::raw('SELECT order_item.* FROM order_item, orders
-									WHERE 
-									orders.status = 0 AND
-									order_item.order_id = orders.id 
-									AND  orders.user_id = '.$id.''));
+		$order_items= DB::select(DB::raw("SELECT order_item.* FROM order_item, orders ".
+									"WHERE orders.status = 0 AND ".
+									"order_item.order_id = orders.id ".
+									"AND  orders.user_id = $id"));
 
 		
 		$array = array('foo' => 'bar');
@@ -30,11 +29,11 @@ class CartController extends BaseController {
 			$arr = $items[0];
 			
 			$additions = new StdClass();
-			$additions->cream = DB::select(DB::raw("SELECT cream.* FROM cream, addition, order_item".
+			$additions->cream = DB::select(DB::raw("SELECT cream.* FROM cream, addition ".
 			" WHERE addition.id = $order_item->addition_id AND addition.cream_id = cream.id LIMIT 1"));
-			$additions->syrup = DB::select(DB::raw("SELECT syrup.* FROM syrup, addition, order_item".
+			$additions->syrup = DB::select(DB::raw("SELECT syrup.* FROM syrup, addition ".
 			" WHERE addition.id = $order_item->addition_id AND addition.syrup_id = syrup.id LIMIT 1"));
-			$additions->sprinkling = DB::select(DB::raw("SELECT sprinkling.* FROM sprinkling, addition, order_item".
+			$additions->sprinkling = DB::select(DB::raw("SELECT sprinkling.* FROM sprinkling, addition ".
 			" WHERE addition.id = $order_item->addition_id AND addition.sprinkling_id = sprinkling.id LIMIT 1"));
 
 
@@ -87,6 +86,7 @@ class CartController extends BaseController {
 		// return var_dump(isset($additions['cream_id']));
 
 		// Проверка на наличие cream_id
+		
 		if ( isset($additions['cream_id']) ) {
 			$cream_id = $additions['cream_id'];
 			$query.= "addition.cream_id = $cream_id ";	
@@ -119,7 +119,12 @@ class CartController extends BaseController {
 		
 		$query.= "LIMIT 1";
 		
-		// return var_dump($query);
+		if (!$cream_id && !$syrup_id && !$sprinkling_id) {
+			$query = "SELECT * FROM addition WHERE cream_id IS NULL".
+			" AND syrup_id IS NULL AND sprinkling_id IS NULL";
+		}
+
+		//return var_dump($query);
 
 		$user_id= Auth::user()->id;//вытягиваем айдишник юзера из сессии
 		
@@ -127,7 +132,7 @@ class CartController extends BaseController {
 		$order_id = $order_id[0]->id;
 		$addition = DB::select(DB::raw($query));
 
-		// var_dump($query);
+		//return var_dump($addition);
 
 		if (!$addition)
 		{
@@ -142,7 +147,7 @@ class CartController extends BaseController {
 			$add = $addition[0]->id;
 		}
 
-		// return var_dump($add[0]->id);
+		 //return var_dump($add);
 		
 		
 		//проверяем условие того, есть ли этот товар в корзине
@@ -153,6 +158,7 @@ class CartController extends BaseController {
 			"AND orders.user_id = $user_id " .
 			"AND order_item.addition_id = $add"));
 
+	
 		if ($exists) {
 			
 			DB::table('order_item')
@@ -173,7 +179,7 @@ class CartController extends BaseController {
 	public function SubmitOrder(){
 
 		$user_id= Auth::user()->id;//вытягиваем айдишник юзера из сессии
-		$order_id = DB::select(DB::raw("SELECT id FROM orders WHERE status = 0 AND user_id=$user_id LIMIT 1"));
+			$order_id = DB::select(DB::raw("SELECT id FROM orders WHERE status = 0 AND user_id=$user_id LIMIT 1"));
 		$order_id = $order_id[0]->id;
 		DB::statement('UPDATE orders SET status = 1 WHERE id = ' . $order_id);
 		DB::insert('insert into orders(user_id, status, created) 

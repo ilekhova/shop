@@ -28,11 +28,10 @@ public function doLogin()
 			$email  = Input::get('email');
             $password  = Input::get('password') ;
 			// attempt to do the login
-			if (Auth::once(array('email' => $email, 'password' => $password))) {
+			if (Auth::attempt(array('email' => $email, 'password' => $password))) {
 
-				/*$id= Auth::user()->id;
-				$exists = DB::select(DB::raw('SELECT * FROM orders WHERE status = 0
-					AND user_id='.$id.''));
+				$id= Auth::user()->id;
+				$exists = DB::select(DB::raw('SELECT * FROM orders WHERE status = 0 AND user_id='.$id.''));
 	    		if(!$exists)	
 					{
 					DB::table('orders')->insert(
@@ -41,7 +40,7 @@ public function doLogin()
 	  				'created' => DB::raw('NOW()')
 	                )
 					);	
-				}*/
+				}
 					return var_dump('uraaaa');
 				} else {	 	
 
